@@ -31,6 +31,7 @@ export class MovieListComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit(): void {
+        this.inspectEleemnt();
         this.imbd = 'src/assets/imbd.jpg';
         this.movieForm = new FormGroup({
             movieName: new FormControl('', Validators.required),
@@ -43,7 +44,14 @@ export class MovieListComponent implements OnInit {
         });
     }
 
+    inspectEleemnt(){
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    }
+
     onSubmit() {
+        
         const { movieName } = this.movieForm.getRawValue();
         const url = `https://api.themoviedb.org/3/search/movie?api_key=f6bb9f69072f0d231a0f04b55854335a&language=en-US
                       &query=${movieName}&page=1&include_adult=false`;
