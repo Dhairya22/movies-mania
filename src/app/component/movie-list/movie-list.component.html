@@ -4,7 +4,7 @@
         <i class="fa fa-ticket" aria-hidden="true" style="font-size: 2rem;"></i>
         <h1 class="text-3xl font-bold text-gray-900">Movie Mania</h1>
         <div class="mob" style="margin-left: 75%;">
-            <input type="checkbox" class="checkbox" id="checkbox">
+            <input type="checkbox" class="checkbox" id="checkbox" autocomplete="on">
             <label for="checkbox" class="label">
                 <i class="fa fa-moon-o" aria-hidden="true"></i>
                 <i class="fa fa-sun-o" aria-hidden="true"></i>
@@ -15,7 +15,7 @@
 </header>
 
 
-<main class="mob-view">
+<main class="mob-view" style="margin-bottom: 50px;">
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div style="margin-bottom: 50px;">
             <div class="col-span-6 sm:col-span-3">
@@ -28,13 +28,6 @@
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         <button type="submit" (click)="onSubmit()" style="width: 200px; background-color: black;"
                             class="mob-btn inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <!-- <img  src="https://img.icons8.com/cotton/64/000000/search--v2.png"/> -->
-                            <!-- <img style="height: 20px; width: 20px;" src="https://img.icons8.com/ios-filled/50/000000/search--v4.png"/> -->
-                            <!-- <img style="height: 20px; width: 20px; color: white;" src="https://icon-library.com/images/white-search-icon-transparent-background/white-search-icon-transparent-background-19.jpg"/> -->
-                            <!-- <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 10px;" width="20" height="20" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
-                                <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z"/>
-                                <path d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5ZM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"/>
-                              </svg> -->
                             <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 10px;" width="20" height="20"
                                 fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path
@@ -44,22 +37,28 @@
                         </button>
                     </div>
                 </form>
+                <div style="margin-top: 15px;" class="tags-res">
+                    <div *ngFor="let item of category" (click)="selectedCategory(item)"
+                        class="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border tags">
+                        {{item.name}}
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Replace with your content -->
+
         <section class="cards">
-            <!--   card 1 -->
             <article class="card" *ngFor="let data of movieList">
                 <picture class="thumbnail">
-                    <img class="category__001"
+                    <img class="category__001" *ngIf="data.poster_path"
                         [src]="'https://image.tmdb.org/t/p/w185_and_h278_bestv2/'+data.poster_path" alt="" />
+                    <img *ngIf="!data.poster_path" src="../../../assets/dummy.png" alt=""
+                        style="height: 385px; background-color: white;">
                 </picture>
                 <div class="card-content">
-                    <!-- <p class="category category__01">Cloud Storage</p> -->
                     <h2> <strong>{{data.title}}</strong> </h2>
                     <hr>
                     <p style="margin-top: 20px;">{{data.overview}}</p>
-                </div><!-- .card-content -->
+                </div>
                 <footer>
                     <div class="post-meta">
                         <div style="display: flex; justify-content: flex-start; align-items: center; column-gap: 10px;">
@@ -85,12 +84,10 @@
                 <div class="empty-state__message">{{errorMsg}}</div>
             </div>
         </div>
-
-        <!-- /End replace -->
     </div>
 </main>
 
-<div class="footer" style="margin-top: 500px;">
+<div class="footer">
     &copy; 2022. <a href="https://github.com/Dhairya22" style="color: white;" class="github"> &nbsp;
         <i class="fa fa-github" aria-hidden="true" style="font-size: 1.2rem;"></i>
         Dhairya
