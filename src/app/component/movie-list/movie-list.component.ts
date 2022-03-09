@@ -24,6 +24,7 @@ export class MovieListComponent implements OnInit {
         { name: 'Horror' },
         { name: 'Action' },
         { name: 'Sci-Fi' },
+        { name: 'Crime' }
     ];
     selectCategory: any;
     totalPages: Array<any> = [];
