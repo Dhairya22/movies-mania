@@ -1,0 +1,79 @@
+<header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 theme" style="display: flex; align-items: center; column-gap: 15px;">
+        <i class="fa fa-ticket" aria-hidden="true" style="font-size: 2rem;"></i>
+        <h1 class="text-3xl font-bold text-gray-900">Movie Mania</h1>
+        <div style="margin-left: 75%;">
+            <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="label">
+            <i class="fa fa-moon-o" aria-hidden="true"></i>
+            <i class="fa fa-sun-o" aria-hidden="true"></i>
+            <div class='ball'></div>
+          </label>
+        </div>
+    </div>
+</header>
+
+
+<main>
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div style="margin-bottom: 50px;">
+            <div class="col-span-6 sm:col-span-3">
+                <form [formGroup]="movieForm">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">Movie name</label>
+                    <div
+                        style="display: flex; justify-content: space-between; flex-direction: row; row-gap: 15px; column-gap: 15px;">
+                        <input type="text" formControlName="movieName" name="first-name" id="first-name"
+                            autocomplete="given-name"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        <button type="submit" (click)="onSubmit()" style="width: 200px; background-color: black;"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <!-- <img  src="https://img.icons8.com/cotton/64/000000/search--v2.png"/> -->
+                            <!-- <img style="height: 20px; width: 20px;" src="https://img.icons8.com/ios-filled/50/000000/search--v4.png"/> -->
+                            <!-- <img style="height: 20px; width: 20px; color: white;" src="https://icon-library.com/images/white-search-icon-transparent-background/white-search-icon-transparent-background-19.jpg"/> -->
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 10px;" width="20" height="20" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
+                                <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z"/>
+                                <path d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5ZM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"/>
+                              </svg> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 10px;" width="20" height="20"
+                                fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                            Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Replace with your content -->
+        <section class="cards">
+            <!--   card 1 -->
+            <article class="card" *ngFor="let data of movieList">
+                <picture class="thumbnail">
+                    <img class="category__01"
+                        [src]="'https://image.tmdb.org/t/p/w185_and_h278_bestv2/'+data.poster_path" alt="" />
+                </picture>
+                <div class="card-content">
+                    <!-- <p class="category category__01">Cloud Storage</p> -->
+                    <h2> <strong>{{data.title}}</strong> </h2>
+                    <hr>
+                    <p style="margin-top: 20px;">{{data.overview}}</p>
+                </div><!-- .card-content -->
+                <footer>
+                    <div class="post-meta">
+                        <div style="display: flex; justify-content: flex-start; align-items: center; column-gap: 10px;">
+                            <img class="category__01"
+                                [src]="'https://png2.cleanpng.com/sh/8e1ee54ef7bfba8c6dcc82ccff5cc827/L0KzQYm3WcIxN6h7kZH0aYP2gLBuTfNwdaF6jNd7LXnmf7B6TgRmdJZ7geVyb36wfLFuj710a5JxedR1ZT35dbT7jCIub6NmRdt2ZHKwebT2jr1nepZqRdHvLXPsfrb0gb1qa5Dzi58AYnG2QbfqVPU0bmpoS5C6NkO1R4q9V8E2O2g5Sak6NUa8Q4SBTwBvbz==/kisspng-computer-icons-television-logo-scalable-vector-gra-imdb-icon-free-of-cinema-icons-5ba31fc4e3f9c3.1632796715374171569338.png'"
+                                alt="" />
+                            <span class="timestamp"><i class="fa fa-star" aria-hidden="true"
+                                    style="padding-right: 10px;"></i>{{data.vote_average}}</span>
+                        </div>
+                        <span class="comments"><i class="fa fa-bolt" aria-hidden="true"></i><a href="javascript:void(0)"> {{data.popularity}}</a></span>
+                    </div>
+                </footer>
+            </article>
+        </section>
+
+        <!-- /End replace -->
+    </div>
+</main>

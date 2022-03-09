@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+.fa-sun-o{
+    color: white !important;
+}
+
+body.dark {
+    background-color: #292c35 !important;
+    .shadow{
+        background-color: #292c35 !important;
+        h1{
+            color: white !important;
+        }
+        i{
+            color: white !important;
+        }
+    }
+    .block{
+        color: white !important;
+    }
+    .cards{
+        color: white !important;
+    }
+    h2{
+        color: white !important;
+    }
+    p{
+        color: white !important;
+    }
+    span{
+        color: white !important;
+    }
+    a{
+        color: white !important;
+    }
+}
