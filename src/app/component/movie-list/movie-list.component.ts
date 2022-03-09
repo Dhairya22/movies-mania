@@ -26,6 +26,7 @@ export class MovieListComponent implements OnInit {
         { name: 'Sci-Fi' },
     ];
     selectCategory: any;
+    totalPages: Array<any> = [];
 
     constructor(private http: HttpClient) { }
 
@@ -55,6 +56,7 @@ export class MovieListComponent implements OnInit {
                     this.movieList.map((items) => {
                         this.imgPath = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${items.poster_path}`;
                     });
+                    this.totalPages = Array.from(Array(response?.total_pages).keys());
                 } else {
                     this.movieList = [];
                     this.showError = true;
@@ -79,6 +81,37 @@ export class MovieListComponent implements OnInit {
 
         const url = `https://api.themoviedb.org/3/search/movie?api_key=f6bb9f69072f0d231a0f04b55854335a&language=en-US
                       &query=${this.selectCategory}&page=1&include_adult=false`;
+        this.http.get(url).subscribe(
+            (response: any) => {
+                // this.showError = false;
+                this.totalPages = Array.from(Array(response?.total_pages).keys());
+                if (response && response.total_results != 0) {
+                    this.showError = false;
+                    this.movieList = response?.results;
+                    this.movieList.map((items) => {
+                        this.imgPath = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${items.poster_path}`;
+                    });
+                } else {
+                    this.movieList = [];
+                    this.showError = true;
+                    this.errorMsg = 'No records found.';
+                }
+            },
+            (error) => {
+                if (error) {
+                    this.movieList = [];
+                    this.showError = true;
+                    this.errorMsg = 'Please enter a Movie name.';
+                }
+            }
+        );
+    }
+
+    goToPage(pages: any) {
+        window.scrollTo(0, 0);
+        const { movieName } = this.movieForm.getRawValue();
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=f6bb9f69072f0d231a0f04b55854335a&language=en-US
+                      &query=${movieName}&page=${pages}&include_adult=false`;
         this.http.get(url).subscribe(
             (response: any) => {
                 // this.showError = false;

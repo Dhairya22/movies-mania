@@ -3,6 +3,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+html{
+    scroll-behavior: smooth;
+}
+
 
 .fa-sun-o{
     color: white !important;
