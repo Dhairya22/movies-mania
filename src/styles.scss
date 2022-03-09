@@ -19,6 +19,9 @@ body.dark {
             color: white !important;
         }
     }
+    .first-name{
+        color: black !important;
+    }
     .block{
         color: white !important;
     }
@@ -37,4 +40,27 @@ body.dark {
     a{
         color: white !important;
     }
+    .card {
+        /*height: 200px;*/
+        /*background: red;*/
+        border: 2px solid #a9a9a9;
+        border-radius: 4px;
+        padding: .5rem;
+        -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+        display: flex;
+        /* -webkit-box-orient: vertical; */
+        /* -webkit-box-direction: normal; */
+        -ms-flex-direction: column;
+        flex-direction: column;
+        position: relative;
+        color: #5d5e5e;
+      } 
+      .empty-state {
+        width: 750px !important;
+        margin: 40px auto !important;
+        border-radius: 4px !important;
+        background: none !important;
+        box-shadow: none !important;
+      }
 }

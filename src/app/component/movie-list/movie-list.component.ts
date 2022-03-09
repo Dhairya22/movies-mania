@@ -12,6 +12,8 @@ export class MovieListComponent implements OnInit {
   movieForm!: FormGroup;
   movieList: Array<any> = [];
   imgPath: any;
+  showError: Boolean = false;
+  errorMsg = "";
 
   imbd: any;
 
@@ -35,13 +37,23 @@ export class MovieListComponent implements OnInit {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=f6bb9f69072f0d231a0f04b55854335a&language=en-US
                 &query=${movieName}&page=1&include_adult=false`;
     this.http.get(url).subscribe((response: any) => {
-        if(response){
+        // this.showError = false;
+        if(response && response.total_results != 0){
+            this.showError = false;
             this.movieList = response?.results;
             this.movieList.map(items => {
                 this.imgPath = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${items.poster_path}`;
-                console.log("🚀 ~ file: movie-list.component.ts ~ line 33 ~ MovieListComponent ~ this.http.get ~ this.imgPath", this.imgPath)
             })
-            console.log("🚀 ~ file: movie-list.component.ts ~ line 30 ~ MovieListComponent ~ this.http.get ~ this.movieList", this.movieList)
+        }else {
+            this.movieList = [];
+            this.showError = true;
+            this.errorMsg = "No records found.";
+        }
+    },(error) => {
+        if(error){
+            this.movieList = [];
+            this.showError = true;
+            this.errorMsg = "Please enter a Movie name.";
         }
     });
   }

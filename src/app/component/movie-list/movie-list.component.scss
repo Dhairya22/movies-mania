@@ -1,169 +1,303 @@
 a {
-    text-decoration: none;
-    color: black;
-  }
-  
-  h2 {
-    color: #000;
-    margin: 2rem 0 .5rem;
-    font-size: 1.25rem;
-    font-weight: 400;
-    text-transform: uppercase;
-  }
-  
-  img {
-    display: block;
-      border: 0;
-      width: 100%;
-      height: auto;
-  }
-  
-  /***************************           Cards            *******************************/
-  
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* see notes below */
-    grid-auto-rows: minmax(200px, auto);
-    grid-gap: 1rem;
-  }
-  
-  .card {
-    /*height: 200px;*/
-    /*background: red;*/
-    border: 2px solid #e7e7e7;
-    border-radius: 4px;
-    padding: .5rem;
-    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
-    display: flex;
-    /* -webkit-box-orient: vertical; */
-    /* -webkit-box-direction: normal; */
-    -ms-flex-direction: column;
-    flex-direction: column;
-    position: relative;
-    color: #5d5e5e;
-  } /* li item */
-  
-  .thumbnail img {
-    fill: #c7c4c4;
-    padding: 1.5rem;
-  }
-  
-  .card-content {
-      font-size: .75rem;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-      flex-direction: column;
-      -webkit-box-flex: 1;
-      -ms-flex: 1;
-      flex: 1;
-  }
-  
-  .panel.card-panel .panel-header {
-      background-color: #ffffff;
-      font-size: .75rem;
-      font-weight: 400;
-      height: 25px !important;
-  }
-  
-  .panel.card-panel .panel-content {
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-  }
-  
-  .category {
-    font-size: .75rem;
-    text-transform: uppercase;
-  }
-  
-  footer {
-    border-top: 2px solid #e7e7e7;
-    margin: .5rem 0 0;
-    min-height: 30px;
-    font-size: 1.0rem;
-  }
-  
-  .category {
-      position: absolute;
-      top: 110px;
-      left: 0;
-      color: #fff;
-      background: #e74c3c;
-      padding: 10px 15px;
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-  }
-  
-  .category__01 {
-    width: 50px;
-  }
-  
-  .category__02 {
-    background-color: #5d5e5e;
-  }
-  
-  .category__03 {
-    background-color: #51bb7b;
-  }
-  
-  .category__04 {
-    background-color: #f47820;
-  }
-  
-  .category__05 {
-    background-color: #8350a0;
-  }
-  
-  .post-meta {
-    margin-top: .5rem;
-  }
-  
-  .comments {
-    margin-left: .5rem;
+  text-decoration: none;
+  color: black;
+}
+
+h2 {
+  color: #000;
+  margin: 2rem 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+img {
+  display: block;
+  border: 0;
+  width: 100%;
+  height: auto;
+}
+
+/***************************           Cards            *******************************/
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* see notes below */
+  grid-auto-rows: minmax(200px, auto);
+  grid-gap: 1rem;
+}
+
+.card {
+  /*height: 200px;*/
+  /*background: red;*/
+  border: 2px solid #e7e7e7;
+  border-radius: 4px;
+  padding: 0.5rem;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+  display: flex;
+  /* -webkit-box-orient: vertical; */
+  /* -webkit-box-direction: normal; */
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  color: #5d5e5e;
+}
+
+/* li item */
+
+.thumbnail img {
+  fill: #c7c4c4;
+  padding: 1.5rem;
+}
+
+.card-content {
+  font-size: 0.75rem;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.panel.card-panel .panel-header {
+  background-color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 400;
+  height: 25px !important;
+}
+
+.panel.card-panel .panel-content {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.category {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+footer {
+  border-top: 2px solid #e7e7e7;
+  margin: 0.5rem 0 0;
+  min-height: 30px;
+  font-size: 1rem;
+}
+
+.category {
+  position: absolute;
+  top: 110px;
+  left: 0;
+  color: #fff;
+  background: #e74c3c;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.category__01 {
+  width: 50px;
+}
+
+.category__02 {
+  background-color: #5d5e5e;
+}
+
+.category__03 {
+  background-color: #51bb7b;
+}
+
+.category__04 {
+  background-color: #f47820;
+}
+
+.category__05 {
+  background-color: #8350a0;
+}
+
+.post-meta {
+  margin-top: 0.5rem;
+}
+
+.comments {
+  margin-left: 0.5rem;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  width: 50px;
+  height: 26px;
+  background-color: #111;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.ball {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked + .label .ball {
+  transform: translateX(24px);
+}
+
+.fa-moon {
+  color: pink;
+}
+
+.fa-sun {
+  color: yellow;
+}
+
+@media screen and (max-width: 600px) {
+  .mob-view {
+    padding: 15px !important;
+
+    .mob {
+      margin-left: 15% !important;
+    }
+
+    .mob-btn {
+      padding: 12px !important;
+      width: 100% !important;
+    }
+
+    .mob-view-form {
+      display: flex !important;
+      justify-content: space-between !important;
+      flex-direction: column !important;
+      row-gap: 15px !important;
+      column-gap: 15px !important;
+    }
   }
 
-  .checkbox {
-    opacity: 0;
-    position: absolute;
+  .empty-state {
+    width: 0 !important;
+    margin: 40px auto !important;
+    background: #ffffff !important;
+    box-shadow: 1px 2px 10px #e1e3ec !important;
+    border-radius: 4px !important;
   }
-  
-  .label {
-    width: 50px;
-    height: 26px;
-    background-color:#111;
+}
+
+@media screen and (max-width: 767px) {
+  .mob-view {
+    padding: 15px !important;
+
+    .mob {
+      margin-left: 15% !important;
+    }
+
+    .mob-btn {
+      padding: 12px !important;
+      width: 100% !important;
+    }
+
+    .mob-view-form {
+      display: flex !important;
+      justify-content: space-between !important;
+      flex-direction: column !important;
+      row-gap: 15px !important;
+      column-gap: 15px !important;
+    }
+  }
+
+  .empty-state {
+    width: 0 !important;
+    margin: 40px auto !important;
+    background: #ffffff !important;
+    box-shadow: 1px 2px 10px #e1e3ec !important;
+    border-radius: 4px !important;
+  }
+}
+
+.empty-state {
+  width: 750px;
+  margin: 40px auto;
+  background: #ffffff;
+  box-shadow: 1px 2px 10px #e1e3ec;
+  border-radius: 4px;
+
+  &__content {
+    //   padding: 48px;
     display: flex;
-    border-radius:50px;
     align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    position: relative;
-    transform: scale(1.5);
+    flex-direction: column;
+
+    .empty-state__icon {
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      border-radius: 200px;
+      justify-content: center;
+      background-color: #f7fafc;
+      box-shadow: 0px 2px 1px #e1e3ec;
+
+      img {
+        width: 170px;
+      }
+    }
+
+    .empty-state__message {
+      color: #38a169;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-top: 0.85rem;
+    }
+
+    .empty-state__help {
+      color: #a2a5b9;
+      font-size: 0.875rem;
+    }
   }
-  
-  .ball {
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    position: absolute;
-    top: 3px;
-    left: 2px;
-    border-radius: 50%;
-    transition: transform 0.2s linear;
+}
+
+.credit {
+  color: #a2a5b9;
+  font-size: 0.75rem;
+  text-align: center;
+
+  a {
+    color: #444;
   }
-  
-  /*  target the elemenent after the label*/
-  .checkbox:checked + .label .ball{
-    transform: translateX(24px);
-  }
-  
-  .fa-moon {
-    color: pink;
-  }
-  
-  .fa-sun {
-    color: yellow;
-  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  color: #6c757d !important;
+  text-align: center;
+  padding: 12px;
+}
+
+.github:hover {
+  color: royalblue !important;
+}
