@@ -24,9 +24,9 @@
                     <div class="mob-view-form"
                         style="display: flex; justify-content: space-between; flex-direction: row; row-gap: 15px; column-gap: 15px;">
                         <input type="text" formControlName="movieName" name="first-name" id="first-name"
-                            autocomplete="given-name"
+                            autocomplete="given-name" #movie
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                        <button type="submit" (click)="onSubmit()" style="width: 200px; background-color: black;"
+                        <button type="submit" (click)="getMovieList(movie.value)" style="width: 200px; background-color: black;"
                             class="mob-btn inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 10px;" width="20" height="20"
                                 fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -38,7 +38,7 @@
                     </div>
                 </form>
                 <div style="margin-top: 15px;" class="tags-res">
-                    <div *ngFor="let item of category" (click)="selectedCategory(item)"
+                    <div *ngFor="let item of category" (click)="getMovieList(item)"
                         class="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border tags">
                         {{item.name}}
                     </div>
@@ -91,7 +91,7 @@
     <nav data-pagination class="containerr" *ngIf="totalPages.length > 0">
         <i class="fa fa-angle-left" aria-hidden="true" disabled></i>
         <ul>
-            <li *ngFor="let pages of totalPages"><a href="javascript:void(0)" (click)="goToPage(pages+1)"
+            <li *ngFor="let pages of totalPages"><a href="javascript:void(0)" (click)="getMovieList(pages+1)"
                     class="active">{{pages+1}}</a>
         </ul>
         <i class="fa fa-angle-right" aria-hidden="true" disabled></i>

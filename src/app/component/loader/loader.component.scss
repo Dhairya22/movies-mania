@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Pacifico&display=swap');
+
+.blob-loader {
+  font-family: 'Pacifico', cursive;       position: relative;
+  width: 200px; height: 200px;
+  text-align: center;
+  line-height: 200px;
+  font-size: 30px;
+  margin: 0 auto;
+}
+.blob-loader::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #168ae8 content-box;
+  box-sizing: border-box;
+  border-top: 15px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from {
+  transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+// body {
+//   min-height: 100vh;
+//   display: grid;
+//   place-items: center;
+//   /* Will use later for text color */
+//   color: #1d1e22;
+//   background-color: currentColor;
+// }

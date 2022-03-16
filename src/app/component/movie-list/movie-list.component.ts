@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CommonService } from 'src/app/services/common.service';
 
 interface category {
     name: string;
@@ -29,7 +30,9 @@ export class MovieListComponent implements OnInit {
     selectCategory: any;
     totalPages: Array<any> = [];
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private cs: CommonService) { }
 
     ngOnInit(): void {
         this.inspectEleemnt();
@@ -45,20 +48,32 @@ export class MovieListComponent implements OnInit {
         });
     }
 
-    inspectEleemnt(){
-        document.addEventListener('contextmenu', function(e) {
+    inspectEleemnt() {
+        document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
         });
     }
 
-    onSubmit() {
-        
+    getMovieList(data: any) {
+        console.log("🚀 ~ file: movie-list.component.ts ~ line 58 ~ MovieListComponent ~ getMovieList ~ data", data)
         const { movieName } = this.movieForm.getRawValue();
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=f6bb9f69072f0d231a0f04b55854335a&language=en-US
-                      &query=${movieName}&page=1&include_adult=false`;
-        this.http.get(url).subscribe(
-            (response: any) => {
-                // this.showError = false;
+        
+        if(typeof data === 'object' && data != null){
+            localStorage.setItem('category',data.name);
+            let category: any = localStorage.getItem('category');
+            console.log("🚀 ~ file: movie-list.component.ts ~ line 61 ~ MovieListComponent ~ getMovieList ~ category", category)
+            if(category){
+                this.selectCategory = category.toString();
+                this.movieForm.patchValue({
+                    movieName: this.selectCategory,
+                });
+            }
+        }
+
+        if (typeof data === 'object' && data != null) {
+            console.log("🚀 ~ file: movie-list.component.ts ~ line 69 ~ MovieListComponent ~ this.cs.getSelectedCategory ~ this.selectCategory", this.selectCategory)
+            this.cs.getSelectedCategory(this.selectCategory).subscribe((response: any) => {
+                console.log("🚀 ~ response", response);
                 if (response && response.total_results != 0) {
                     this.showError = false;
                     this.movieList = response?.results;
@@ -71,78 +86,46 @@ export class MovieListComponent implements OnInit {
                     this.showError = true;
                     this.errorMsg = 'No records found.';
                 }
-            },
-            (error) => {
-                if (error) {
-                    this.movieList = [];
-                    this.showError = true;
-                    this.errorMsg = 'Please enter a Movie name.';
-                }
-            }
-        );
-    }
-
-    selectedCategory(category: any) {
-        this.selectCategory = category.name;
-        this.movieForm.patchValue({
-            movieName: this.selectCategory,
-        });
-
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=f6bb9f69072f0d231a0f04b55854335a&language=en-US
-                      &query=${this.selectCategory}&page=1&include_adult=false`;
-        this.http.get(url).subscribe(
-            (response: any) => {
-                // this.showError = false;
-                this.totalPages = Array.from(Array(response?.total_pages).keys());
+            });
+        } else if (typeof data === 'number' && data != null) {
+            window.scrollTo(0,0)
+            const url = `https://api.themoviedb.org/3/search/movie?api_key=f6bb9f69072f0d231a0f04b55854335a&language=en-US&query=${movieName}&page=${data}&include_adult=false`;
+            this.cs.getMoviesAccPages(movieName, data).subscribe((response: any) => {
+                console.log("🚀 ~ response", response)
                 if (response && response.total_results != 0) {
                     this.showError = false;
                     this.movieList = response?.results;
                     this.movieList.map((items) => {
                         this.imgPath = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${items.poster_path}`;
                     });
+                    this.totalPages = Array.from(Array(response?.total_pages).keys());
                 } else {
                     this.movieList = [];
                     this.showError = true;
                     this.errorMsg = 'No records found.';
                 }
-            },
-            (error) => {
-                if (error) {
-                    this.movieList = [];
-                    this.showError = true;
-                    this.errorMsg = 'Please enter a Movie name.';
-                }
-            }
-        );
-    }
-
-    goToPage(pages: any) {
-        window.scrollTo(0, 0);
-        const { movieName } = this.movieForm.getRawValue();
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=f6bb9f69072f0d231a0f04b55854335a&language=en-US
-                      &query=${movieName}&page=${pages}&include_adult=false`;
-        this.http.get(url).subscribe(
-            (response: any) => {
-                // this.showError = false;
+            });
+        } else if(data !== null && movieName){
+            console.log("none called");
+            this.cs.getMovieList(movieName).subscribe((response: any) => {
+                console.log("🚀 ~ file: movie-list.component.ts ~ line 125 ~ MovieListComponent ~ this.cs.getMovieList ~ response", response)
                 if (response && response.total_results != 0) {
                     this.showError = false;
                     this.movieList = response?.results;
                     this.movieList.map((items) => {
                         this.imgPath = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${items.poster_path}`;
                     });
+                    this.totalPages = Array.from(Array(response?.total_pages).keys());
                 } else {
                     this.movieList = [];
                     this.showError = true;
                     this.errorMsg = 'No records found.';
                 }
-            },
-            (error) => {
-                if (error) {
-                    this.movieList = [];
-                    this.showError = true;
-                    this.errorMsg = 'Please enter a Movie name.';
-                }
-            }
-        );
+            });
+        } else if(data == null || !data || data == ''){
+            this.movieList = [];
+            this.showError = true;
+            this.errorMsg = 'Please Enter a movie name !!';
+        }
     }
 }
