@@ -52,6 +52,18 @@ export class MovieListComponent implements OnInit {
         document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
         });
+
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('paste', (e) => {
+            e.preventDefault();
+        });
+
+        document.addEventListener('scroll', (e) => {
+            e.preventDefault();
+        })
     }
 
     getMovieList(data: any) {
