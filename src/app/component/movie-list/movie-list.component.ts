@@ -124,6 +124,7 @@ export class MovieListComponent implements OnInit {
             });
         } else if(data == null || !data || data == ''){
             this.movieList = [];
+            this.totalPages = [];
             this.showError = true;
             this.errorMsg = 'Please Enter a movie name !!';
         }
